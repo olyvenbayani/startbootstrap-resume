@@ -23,9 +23,9 @@ jobs:
       - name: Install Dependencies (if needed)
         run: |
           echo "installing dependencies"
-          npm install || {echo 'Installed failed'; exit 1;'}
+          npm install 
           echo "running build package"
-          npm run build # Optional, depending on the project || {echo 'Build failed'; exit 1;'}
+          npm run build # Optional, depending on the project 
 
       - name: Deploy to S3
         run: |
