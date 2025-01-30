@@ -22,9 +22,13 @@ jobs:
 
       - name: Install Dependencies (if needed)
         run: |
-          npm install
-          npm run build # Optional, depending on the project
+          echo "installing dependencies"
+          npm install || {echo 'Installed failed'; exit 1;'}
+          echo "running build package"
+          npm run build # Optional, depending on the project || {echo 'Build failed'; exit 1;'}
 
       - name: Deploy to S3
         run: |
+          echo "deploying to s3"
           aws s3 sync ./dist s3://cob-demo --delete --exclude ".git/*"
+          echo "deployment completed successfully"
